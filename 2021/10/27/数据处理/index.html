@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="常安">
+
+
+
+
+
+<title>数据处理 | 常安</title>
+
+
+
+    <link rel="icon" href="/tree.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">不如回头看看</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/category">分类</a>
+                
+                    <a class="menu-item" href="/tag">标签</a>
+                
+                    <a class="menu-item" href="/about">关于我</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">不如回头看看</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/category">分类</a>
+                
+                    <a class="menu-item" href="/tag">标签</a>
+                
+                    <a class="menu-item" href="/about">关于我</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">数据处理</h1>
+            
+                <div class="post-meta">
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">十月 27, 2021&nbsp;&nbsp;20:18:56</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categorie/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h5 id="1-处理数据"><a href="#1-处理数据" class="headerlink" title="1.处理数据"></a>1.处理数据</h5><p>本次数据量巨大，且同一类数据被切割为了好几个文件。所以先将同类数据整合到一起。方便处理。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">data_get</span>(<span class="params">path_dir</span>):</span></span><br><span class="line">    df_all = pd.DataFrame()</span><br><span class="line">    <span class="comment"># 按列合并文件</span></span><br><span class="line">    <span class="keyword">for</span> parents, dirnames, filenames <span class="keyword">in</span> os.walk(path_dir):</span><br><span class="line">        <span class="keyword">for</span> filename <span class="keyword">in</span> filenames:</span><br><span class="line">            <span class="comment"># print(filename)</span></span><br><span class="line">            df = pd.read_csv(os.path.join(parents, filename), encoding=<span class="string">&quot;gbk&quot;</span>)</span><br><span class="line">            df_all = df_all.append(df, ignore_index=<span class="literal">True</span>)</span><br><span class="line">    df_all = df_all.dropna(axis=<span class="number">1</span>, how=<span class="string">&#x27;all&#x27;</span>)</span><br><span class="line">    <span class="comment"># 删除列名为空的列</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, df_all.shape[<span class="number">1</span>]):</span><br><span class="line">        <span class="keyword">if</span> (i % <span class="number">2</span> == <span class="number">0</span>):</span><br><span class="line">            unnamed = <span class="string">&quot;Unnamed: &quot;</span> + <span class="built_in">str</span>(i)</span><br><span class="line">            df_all = df_all.drop(unnamed, axis=<span class="number">1</span>)</span><br><span class="line">    df_all = df_all.sort_values(by=<span class="string">&#x27;Time&#x27;</span>)</span><br><span class="line">    <span class="keyword">return</span> df_all</span><br><span class="line"></span><br><span class="line">path_dir7 = <span class="string">&#x27;./7&#x27;</span></span><br><span class="line">df7 = data_get(path_dir7)</span><br><span class="line"><span class="built_in">print</span>(df7)</span><br><span class="line">df7.to_csv(<span class="string">&#x27;data7.csv&#x27;</span>, index=<span class="literal">False</span>, encoding=<span class="string">&quot;gbk&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>然后将整合后的各个文件需要的数据再次进行提取。放到一个文件里方便处理。如下所示。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Input1 = pd.read_csv(<span class="string">&#x27;data1.csv&#x27;</span>, encoding=<span class="string">&quot;gbk&quot;</span>).iloc[:,<span class="number">0</span>:<span class="number">7</span>]</span><br><span class="line">Input2 = pd.read_csv(<span class="string">&#x27;data7.csv&#x27;</span>, encoding=<span class="string">&quot;gbk&quot;</span>).iloc[:,<span class="number">1</span>:<span class="number">4</span>]</span><br><span class="line">Input3 = pd.read_csv(<span class="string">&#x27;data5.csv&#x27;</span>, encoding=<span class="string">&quot;gbk&quot;</span>).iloc[:,<span class="number">2</span>:<span class="number">3</span>]</span><br><span class="line">Input = pd.concat([Input1,Input2,Input3],axis=<span class="number">1</span>)</span><br><span class="line">Input.to_csv(<span class="string">&#x27;input.csv&#x27;</span>, index=<span class="literal">False</span>, encoding=<span class="string">&quot;gbk&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这样输入数据和预测数据就都整合放到了两个文件中。</p>
+<h5 id="2-爬虫爬取数据（另记录）"><a href="#2-爬虫爬取数据（另记录）" class="headerlink" title="2.爬虫爬取数据（另记录）"></a>2.爬虫爬取数据（另记录）</h5><p>用爬虫爬取数据也是获取数据的重要途径，要学会分析url以及使用正则表达式。本次获取的是北京的天气。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">months = [<span class="string">&quot;01&quot;</span>, <span class="string">&quot;02&quot;</span>, <span class="string">&quot;03&quot;</span>, <span class="string">&quot;04&quot;</span>, <span class="string">&quot;05&quot;</span>, <span class="string">&quot;06&quot;</span>, <span class="string">&quot;07&quot;</span>, <span class="string">&quot;08&quot;</span>, <span class="string">&quot;09&quot;</span>, <span class="string">&quot;10&quot;</span>, <span class="string">&quot;11&quot;</span>, <span class="string">&quot;12&quot;</span>]</span><br><span class="line">years = [<span class="number">2019</span>,<span class="number">2020</span>,<span class="number">2021</span>]</span><br><span class="line">city = [<span class="number">54511</span>]  <span class="comment"># 北京代码54511，也可以设置其他城市</span></span><br><span class="line">index_ = [<span class="string">&#x27;MaxTemp&#x27;</span>,<span class="string">&#x27;MinTemp&#x27;</span>, <span class="string">&#x27;WindDir&#x27;</span>, <span class="string">&#x27;Wind&#x27;</span>, <span class="string">&#x27;Weather&#x27;</span>]  <span class="comment"># 选取的气象要素</span></span><br><span class="line">data = pd.DataFrame(columns=index_)  <span class="comment"># 建立一个空dataframe</span></span><br><span class="line"><span class="keyword">for</span> y <span class="keyword">in</span> years:</span><br><span class="line">    <span class="keyword">for</span> m <span class="keyword">in</span> months:</span><br><span class="line">        <span class="keyword">for</span> c <span class="keyword">in</span> city:</span><br><span class="line">            <span class="comment"># 找到json格式数据的url</span></span><br><span class="line">            url = <span class="string">&quot;http://tianqi.2345.com/t/wea_history/js/&quot;</span>+<span class="built_in">str</span>(y)+<span class="built_in">str</span>(m)+<span class="string">&#x27;/&#x27;</span>+<span class="built_in">str</span>(c)+<span class="string">&quot;_&quot;</span>+<span class="built_in">str</span>(y)+<span class="built_in">str</span>(m)+<span class="string">&quot;.js&quot;</span></span><br><span class="line">            <span class="built_in">print</span>(url)</span><br><span class="line">            response = requests.get(url=url)</span><br><span class="line">            <span class="keyword">if</span> response.status_code == <span class="number">200</span>:  <span class="comment"># 防止url请求无响应</span></span><br><span class="line">                response2 = response.text.replace(<span class="string">&quot;&#x27;&quot;</span>, <span class="string">&#x27;&quot;&#x27;</span>)  <span class="comment"># 这一步可以忽略</span></span><br><span class="line">                <span class="comment">#  利用正则表达式获取5个气象要素（方法不唯一）</span></span><br><span class="line">                date = re.findall(<span class="string">&quot;[0-9]&#123;4&#125;-[0-9]&#123;2&#125;-[0-9]&#123;2&#125;&quot;</span>, response2)[:-<span class="number">2</span>] <span class="comment"># 去除最后两个无关的数据</span></span><br><span class="line">                mintemp = re.findall(<span class="string">&#x27;yWendu:&quot;(.*?)℃&#x27;</span>, response2)</span><br><span class="line">                maxtemp = re.findall(<span class="string">&#x27;bWendu:&quot;(.*?)℃&#x27;</span>, response2)</span><br><span class="line">                winddir = re.findall(<span class="string">&#x27;fengxiang:&quot;([\u4E00-\u9FA5]+)&#x27;</span>, response2)</span><br><span class="line">                wind = re.findall(<span class="string">&#x27;fengli:&quot;(\d)[\u4E00-\u9FA5]+&#x27;</span>, response2)</span><br><span class="line">                weather = re.findall(<span class="string">&#x27;tianqi:&quot;([[\u4E00-\u9FA5]+)~?&#x27;</span>, response2)</span><br><span class="line">                data_spider = pd.DataFrame([maxtemp,mintemp, winddir, wind, weather]).T</span><br><span class="line">                data_spider.columns = index_  <span class="comment"># 修改列名</span></span><br><span class="line">                data_spider.index = date  <span class="comment"># 修改索引</span></span><br><span class="line">                data = pd.concat((data,data_spider), axis=<span class="number">0</span>)  <span class="comment"># 数据拼接</span></span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&#x27;%s年%s月的数据抓取成功&#x27;</span> % (y, m))</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="built_in">print</span>(<span class="string">&#x27;%s年%s月的数据不存在&#x27;</span> % (y, m))</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">data.to_excel(<span class="string">&#x27;weatherdata.xlsx&#x27;</span>,)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;爬取数据展示：\n&#x27;</span>, data)</span><br></pre></td></tr></table></figure>
+
+<p>有一个网站<a target="_blank" rel="noopener" href="https://www.aqistudy.cn/historydata/">PM2.5历史数据_空气质量指数历史数据_中国空气质量在线监测分析平台历史数据 (aqistudy.cn)</a>反爬虫十分到位。目前还没有爬成功，日后有这方面学习需求的话再做研究。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://chang-an.xyz/2021/10/27/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">https://chang-an.xyz/2021/10/27/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/</a></span>
+                    </p>
+                
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>珍惜眼前始为真</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tag/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/"># 数据处理</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2021/10/25/test-hello/">test-hello</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <!-- <span>© 常安 </span> -->
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
