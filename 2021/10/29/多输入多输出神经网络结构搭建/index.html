@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="常安">
+
+
+
+
+
+<title>多输入多输出神经网络结构搭建 | 常安</title>
+
+
+
+    <link rel="icon" href="/tree.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">不如回头看看</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/category">分类</a>
+                
+                    <a class="menu-item" href="/tag">标签</a>
+                
+                    <a class="menu-item" href="/about">关于我</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">不如回头看看</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/category">分类</a>
+                
+                    <a class="menu-item" href="/tag">标签</a>
+                
+                    <a class="menu-item" href="/about">关于我</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">多输入多输出神经网络结构搭建</h1>
+            
+                <div class="post-meta">
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">十月 29, 2021&nbsp;&nbsp;10:54:46</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categorie/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>1.需求分析</p>
+<p>上一步已经将输入数据和预测数据分别整合到了各自的文件中。目前是已知有10个输入来预测6个输出（可以简化）。</p>
+<p>据已有知识记得seq2seq模型好像可以做到。据查询<code>keras.layers.concatenate</code>函数应适用于此需求。而且多输出的实现大部分是多个单输出封装到一起的。</p>
+<p>2.多输入实现</p>
+<p>多输入的核心就在于上面提到的<code>concatenate</code>函数。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">input1_ = Input(shape=(<span class="number">100</span>, <span class="number">1</span>), name=<span class="string">&#x27;input1&#x27;</span>)</span><br><span class="line">   input2_ = Input(shape=(<span class="number">50</span>, <span class="number">1</span>), name=<span class="string">&#x27;input2&#x27;</span>)</span><br><span class="line"></span><br><span class="line">   x1 = Conv1D(<span class="number">16</span>, kernel_size=<span class="number">3</span>, strides=<span class="number">1</span>, activation=<span class="string">&#x27;relu&#x27;</span>, padding=<span class="string">&#x27;same&#x27;</span>)(input1_)</span><br><span class="line">   x1 = MaxPool1D(pool_size=<span class="number">10</span>, strides=<span class="number">10</span>)(x1)</span><br><span class="line"></span><br><span class="line">   x2 = Conv1D(<span class="number">16</span>, kernel_size=<span class="number">3</span>, strides=<span class="number">1</span>, activation=<span class="string">&#x27;relu&#x27;</span>, padding=<span class="string">&#x27;same&#x27;</span>)(input2_)</span><br><span class="line">   x2 = MaxPool1D(pool_size=<span class="number">5</span>, strides=<span class="number">5</span>)(x2)</span><br><span class="line"></span><br><span class="line">   x = concatenate([x1, x2])</span><br><span class="line">   x = Flatten()(x)</span><br><span class="line"></span><br><span class="line">   x = Dense(<span class="number">10</span>, activation=<span class="string">&#x27;relu&#x27;</span>)(x)</span><br><span class="line">   output_ = Dense(<span class="number">1</span>, activation=<span class="string">&#x27;sigmoid&#x27;</span>, name=<span class="string">&#x27;output&#x27;</span>)(x)</span><br></pre></td></tr></table></figure>
+
+<p>3.多输出实现</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 分成两类输出 --- 输出01</span></span><br><span class="line">output_01 = Dense(units=<span class="number">6</span>, activation=<span class="string">&quot;relu&quot;</span>, name=<span class="string">&#x27;output01&#x27;</span>)(merge)</span><br><span class="line">output_011 = Dense(units=<span class="number">1</span>, activation=<span class="literal">None</span>, name=<span class="string">&#x27;output011&#x27;</span>)(output_01)</span><br><span class="line"><span class="comment"># 分成两类输出 --- 输出02</span></span><br><span class="line">output_02 = Dense(units=<span class="number">1</span>, activation=<span class="literal">None</span>, name=<span class="string">&#x27;output02&#x27;</span>)(merge)</span><br><span class="line"><span class="comment"># 分成两类输出 --- 输出03</span></span><br><span class="line">output_03 = Dense(units=<span class="number">1</span>, activation=<span class="literal">None</span>, name=<span class="string">&#x27;output03&#x27;</span>)(merge)</span><br><span class="line"><span class="comment"># 构造一个新模型</span></span><br><span class="line">model = Model(inputs=[inputs_01, inputs_02], outputs=[output_011,</span><br><span class="line">                                                      output_02,</span><br><span class="line">                                                      output_03</span><br><span class="line">                                                      ])</span><br></pre></td></tr></table></figure>
+
+<p>4.模型搭建</p>
+<p>因为处理输入数据太繁杂，而且所有输入数据都是同样的处理方式，所以放一起一起处理试试看。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">input1 = Input(shape=(<span class="built_in">input</span>.shape[<span class="number">2</span>],<span class="number">1</span>),  name=<span class="string">&#x27;input1&#x27;</span>)</span><br><span class="line">x1 = Conv1D(filters=<span class="number">16</span>, kernel_size=<span class="number">3</span>, strides=<span class="number">1</span>, activation=<span class="string">&#x27;relu&#x27;</span>, padding=<span class="string">&#x27;same&#x27;</span>)(input1)</span><br><span class="line">x1 = MaxPool1D(pool_size=<span class="number">10</span>, strides=<span class="number">10</span>)(x1)</span><br><span class="line">x1 = LSTM(<span class="number">95</span>, return_sequences=<span class="literal">True</span>)(x1)</span><br><span class="line">x1 = Flatten()(x1)</span><br><span class="line">x = Dense(<span class="number">64</span>, activation=<span class="string">&#x27;relu&#x27;</span>)(x1)</span><br><span class="line">output1 = Dense(<span class="number">1024</span>, activation=<span class="string">&#x27;relu&#x27;</span>)(x)</span><br><span class="line">output1 = Dense(<span class="number">1</span>, activation=<span class="string">&#x27;softmax&#x27;</span>)(output1)</span><br><span class="line">output2 = Dense(<span class="number">1024</span>, activation=<span class="string">&#x27;relu&#x27;</span>)(x)</span><br><span class="line">output2 = Dense(<span class="number">1</span>, activation=<span class="string">&#x27;softmax&#x27;</span>)(output2)</span><br><span class="line">output3 = Dense(<span class="number">1024</span>, activation=<span class="string">&#x27;relu&#x27;</span>)(x)</span><br><span class="line">output3 = Dense(<span class="number">1</span>, activation=<span class="string">&#x27;softmax&#x27;</span>)(output3)</span><br><span class="line">output4 = Dense(<span class="number">1024</span>, activation=<span class="string">&#x27;relu&#x27;</span>)(x)</span><br><span class="line">output4 = Dense(<span class="number">1</span>, activation=<span class="string">&#x27;softmax&#x27;</span>)(output4)</span><br><span class="line">output5 = Dense(<span class="number">1024</span>, activation=<span class="string">&#x27;relu&#x27;</span>)(x)</span><br><span class="line">output5 = Dense(<span class="number">1</span>, activation=<span class="string">&#x27;softmax&#x27;</span>)(output5)</span><br><span class="line">output6 = Dense(<span class="number">1024</span>, activation=<span class="string">&#x27;relu&#x27;</span>)(x)</span><br><span class="line">output6 = Dense(<span class="number">1</span>, activation=<span class="string">&#x27;softmax&#x27;</span>)(output6)</span><br><span class="line"></span><br><span class="line">model = Model(</span><br><span class="line">    inputs=input1,</span><br><span class="line">    outputs=[output1, output2, output3, output4, output5, output6]</span><br><span class="line">)</span><br><span class="line">model.summary()</span><br><span class="line">adam = optimizers.Adam(lr=<span class="number">0.001</span>, beta_1=<span class="number">0.9</span>, beta_2=<span class="number">0.999</span>, epsilon=<span class="literal">None</span>, decay=<span class="number">0.0</span>, amsgrad=<span class="literal">False</span>)</span><br><span class="line">model.<span class="built_in">compile</span>(</span><br><span class="line">    loss=<span class="string">&#x27;binary_crossentropy&#x27;</span>,</span><br><span class="line">    optimizer=adam,</span><br><span class="line">    metrics=[<span class="string">&#x27;acc&#x27;</span>],</span><br><span class="line">    loss_weights = <span class="number">1</span></span><br><span class="line">)</span><br><span class="line">model.fit(xx, [p1,p2,p3,p4,p5,p6], epochs=<span class="number">20</span>, batch_size=<span class="number">180</span>, verbose=<span class="number">2</span>, shuffle=<span class="literal">False</span>)</span><br><span class="line">pred = model.predict(xx, batch_size=<span class="number">20</span>, verbose=<span class="number">2</span>)</span><br></pre></td></tr></table></figure>
+
+<p>训练特别慢而且看着就不对。。。。。。。预测值怎么都是nan？特征值已经都标准化了。提高学习率后预测值都变成了1。。。。</p>
+<p>我觉得自己搭模型尝试性太大，了解如何搭之后还是看一看有没有成熟可参考的模型比较好。</p>
+<p>6.seq2seq模型</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://chang-an.xyz/2021/10/29/%E5%A4%9A%E8%BE%93%E5%85%A5%E5%A4%9A%E8%BE%93%E5%87%BA%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E6%90%AD%E5%BB%BA/">https://chang-an.xyz/2021/10/29/%E5%A4%9A%E8%BE%93%E5%85%A5%E5%A4%9A%E8%BE%93%E5%87%BA%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E6%90%AD%E5%BB%BA/</a></span>
+                    </p>
+                
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>珍惜眼前始为真</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tag/%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C/"># 神经网络</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2021/10/27/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86/">数据处理</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <!-- <span>© 常安 </span> -->
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
