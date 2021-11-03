@@ -224,11 +224,14 @@
 
 <p>有一个网站<a target="_blank" rel="noopener" href="https://www.aqistudy.cn/historydata/">PM2.5历史数据_空气质量指数历史数据_中国空气质量在线监测分析平台历史数据 (aqistudy.cn)</a>反爬虫十分到位。目前还没有爬成功，日后有这方面学习需求的话再做研究。</p>
 <p>3.处理数据</p>
-<p>神经网路需要数据是三维的。形如</p>
+<p>有些神经网络需要数据是三维的。形如</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">[[[-<span class="number">1.92283338</span> -<span class="number">1.38891292</span> -<span class="number">0.98388424</span> ... -<span class="number">1.15294841</span> -<span class="number">0.7899982</span></span><br><span class="line">   -<span class="number">0.86735202</span>]]</span><br><span class="line"></span><br><span class="line"> [[-<span class="number">1.29066595</span> -<span class="number">1.2984917</span>  -<span class="number">1.4348906</span>  ... -<span class="number">1.86754608</span> -<span class="number">1.18622128</span></span><br><span class="line">   -<span class="number">1.73779653</span>]]</span><br><span class="line"></span><br><span class="line"> [[-<span class="number">1.63376665</span> -<span class="number">1.04331814</span> -<span class="number">1.81573089</span> ... -<span class="number">2.17953055</span> -<span class="number">1.72465222</span></span><br><span class="line">   -<span class="number">2.25899368</span>]]</span><br><span class="line"></span><br><span class="line"> ...</span><br><span class="line"></span><br><span class="line"> [[ <span class="number">0.19824151</span> -<span class="number">0.43152073</span> -<span class="number">0.20943708</span> ... -<span class="number">0.48789435</span> -<span class="number">0.47502591</span></span><br><span class="line">   -<span class="number">0.83735348</span>]]</span><br><span class="line"></span><br><span class="line"> [[-<span class="number">0.43903476</span> -<span class="number">1.11660206</span> -<span class="number">1.12666921</span> ... -<span class="number">0.57763023</span> -<span class="number">0.67938426</span></span><br><span class="line">   -<span class="number">0.59679148</span>]]</span><br><span class="line"></span><br><span class="line"> [[-<span class="number">0.6374504</span>  -<span class="number">0.78135393</span> -<span class="number">1.16010012</span> ...  <span class="number">0.06634989</span> -<span class="number">0.0451765</span></span><br><span class="line">   -<span class="number">0.46545446</span>]]]</span><br></pre></td></tr></table></figure>
 
 <p>这是行×步长1×列的。</p>
 <p>处理成这样需要使用<code>reshape</code>或<code>resize</code>函数。一维转二维，二维转三维。这里如果除不尽该如何处理？</p>
+<p>4.可视化</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> seaborn <span class="keyword">as</span> sns</span><br><span class="line">plt.figure(figsize=(<span class="number">16</span>,<span class="number">8</span>))</span><br><span class="line">sns.pointplot(x=<span class="string">&#x27;t1&#x27;</span>, y=<span class="string">&#x27;cnt&#x27;</span>, data=dataset)</span><br><span class="line">plt.show()</span><br><span class="line"></span><br><span class="line">plt.figure(figsize=(<span class="number">16</span>,<span class="number">8</span>))</span><br><span class="line">sns.lineplot(x=<span class="string">&#x27;t2&#x27;</span>, y=<span class="string">&#x27;cnt&#x27;</span>, data=dataset)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
 
         </div>
 
@@ -273,7 +276,7 @@
                 <a class="prev" rel="prev" href="/2021/10/29/%E5%A4%9A%E8%BE%93%E5%85%A5%E5%A4%9A%E8%BE%93%E5%87%BA%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E6%90%AD%E5%BB%BA/">多输入多输出神经网络结构搭建</a>
             
             
-            <a class="next" rel="next" href="/2021/10/25/test-hello/">test-hello</a>
+            <a class="next" rel="next" href="/2021/10/25/%E4%BD%9C%E7%94%A8%E5%9F%9F%E9%93%BE%E5%8F%8A%E9%97%AD%E5%8C%85/">作用域链及闭包</a>
             
         </section>
 
