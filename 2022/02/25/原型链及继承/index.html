@@ -13,7 +13,7 @@
 
 
 
-<title>关于时序预测 | 常安</title>
+<title>原型链及继承 | 常安</title>
 
 
 
@@ -123,25 +123,87 @@
                 <div class="container">
     
     
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
 
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">关于时序预测</h1>
+            <h1 class="post-title">原型链及继承</h1>
             
                 <div class="post-meta">
                     
 
                     
                         <span class="post-time">
-                        Date: <a href="#">十二月 27, 2021&nbsp;&nbsp;20:26:22</a>
+                        Date: <a href="#">二月 25, 2022&nbsp;&nbsp;20:42:34</a>
                         </span>
                     
                     
                         <span class="post-category">
                     Category:
                             
-                                <a href="/categorie/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/">深度学习</a>
+                                <a href="/categorie/JS%E5%9F%BA%E7%A1%80/">JS基础</a>
                             
                         </span>
                     
@@ -150,27 +212,9 @@
         </header>
 
         <div class="post-content">
-            <p>看了一下，是从10月底拿到数据开始做时序预测这方面的。那时候写的东西真是浅薄幼稚啊，现在也大概做了一个多月了，把知道的东西总结一下让以后的自己再来嘲笑嘲笑。</p>
-<p>1.时序预测分类</p>
-<p>实现原理上看，有3种。统计学，传统机器学习，深度学习。（统计学只能自回归）</p>
-<p>预测步长上看，有2种。单步和多步。（我不知道单步有什么价值，不用任何方法我瞎蒙精度也低不了）</p>
-<p>输入变量上看，有2种。自回归预测和协变量预测。（协变量更贴近现实）</p>
-<p>输出结果上看，有2种，点预测和概率预测。（概率预测更贴近现实）</p>
-<p>输出变量上看，有3种，一元预测，多元预测，多重时间序列预测。（目前绝大多数多元都是多个独立单元的组装，难点，有货可以搞，多重时间是输入和输出不同）</p>
-<p>2.有用的模型</p>
-<p>ARIMA（没用过）</p>
-<p>XGBoost（不能用自身的历史数据）</p>
-<p>LSTM（把自身历史数据作为特征时，精度很高）</p>
-<p>CNN+LSTM+Attention（目前在搞，精度还可以，有点问题）</p>
-<p>seq2seq，transformer（做了seq2seq，效果很差，没搞懂输入）</p>
-<p>prophet（没用过，但听说好用）</p>
-<p>3.遇到的问题和总结</p>
-<p>经过测试，当模型比较简单的时候就可以很好拟合的话，再加东西就会导致复杂度增加，精度下降。</p>
-<p>注意力机制适合用于前面模型欠拟合的时候，和数据量很大的时候。17万的数据算小。</p>
-<p>4.下一步</p>
-<p>看能不能搞到更多数据。</p>
-<p>好好研究一下注意力机制。</p>
-<p>尝试seq2seq，transformer，prophet做时序预测。</p>
+            <h5 id="1-原型对象和原型链"><a href="#1-原型对象和原型链" class="headerlink" title="1.原型对象和原型链"></a>1.原型对象和原型链</h5><p>原型对象constructor指向新建的函数，函数的prototype属性指向原型对象。实例[[prototype]],也写作_proto_属性也指向原型对象，但constrector不指向实例。</p>
+<p>原型链是JS实现继承的主要方法。基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法。通过原型对象的某个实例变为另一个原型对象来实现继承。</p>
+<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4a61ca07672a45d3aecf382100cc9719~tplv-k3u1fbpfcp-watermark.awebp" alt="image.png"></p>
 
         </div>
 
@@ -180,7 +224,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="https://chang-an.xyz/2021/12/27/%E5%85%B3%E4%BA%8E%E6%97%B6%E5%BA%8F%E9%A2%84%E6%B5%8B/">https://chang-an.xyz/2021/12/27/%E5%85%B3%E4%BA%8E%E6%97%B6%E5%BA%8F%E9%A2%84%E6%B5%8B/</a></span>
+                        <span><a href="https://chang-an.xyz/2022/02/25/%E5%8E%9F%E5%9E%8B%E9%93%BE%E5%8F%8A%E7%BB%A7%E6%89%BF/">https://chang-an.xyz/2022/02/25/%E5%8E%9F%E5%9E%8B%E9%93%BE%E5%8F%8A%E7%BB%A7%E6%89%BF/</a></span>
                     </p>
                 
                 
@@ -199,7 +243,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tag/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"># 基础知识</a>
+                        <a href="/tag/%E5%8E%9F%E5%9E%8B%E9%93%BE%E5%8F%8A%E7%BB%A7%E6%89%BF/"># 原型链及继承</a>
                     
                         
                 </span>
@@ -212,10 +256,8 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2022/02/25/%E5%8E%9F%E5%9E%8B%E9%93%BE%E5%8F%8A%E7%BB%A7%E6%89%BF/">原型链及继承</a>
             
-            
-            <a class="next" rel="next" href="/2021/11/07/VUE%E5%90%AF%E5%8A%A8/">VUE启动</a>
+            <a class="next" rel="next" href="/2021/12/27/%E5%85%B3%E4%BA%8E%E6%97%B6%E5%BA%8F%E9%A2%84%E6%B5%8B/">关于时序预测</a>
             
         </section>
 
