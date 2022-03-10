@@ -13,7 +13,7 @@
 
 
 
-<title>原型链及继承 | 常安</title>
+<title>css-position | 常安</title>
 
 
 
@@ -189,14 +189,14 @@
     
     <article class="post-wrap">
         <header class="post-header">
-            <h1 class="post-title">原型链及继承</h1>
+            <h1 class="post-title">css-position</h1>
             
                 <div class="post-meta">
                     
 
                     
                         <span class="post-time">
-                        Date: <a href="#">二月 25, 2022&nbsp;&nbsp;20:42:34</a>
+                        Date: <a href="#">三月 8, 2022&nbsp;&nbsp;10:50:41</a>
                         </span>
                     
                     
@@ -212,9 +212,15 @@
         </header>
 
         <div class="post-content">
-            <h5 id="1-原型对象和原型链"><a href="#1-原型对象和原型链" class="headerlink" title="1.原型对象和原型链"></a>1.原型对象和原型链</h5><p>原型对象constructor指向新建的函数，函数的prototype属性指向原型对象。实例[[prototype]],也写作_proto_属性也指向原型对象，但constrector不指向实例。</p>
-<p>原型链是JS实现继承的主要方法。基本思想是利用原型让一个引用类型继承另一个引用类型的属性和方法。通过原型对象的某个实例变为另一个原型对象来实现继承。</p>
-<p><img src="https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/4a61ca07672a45d3aecf382100cc9719~tplv-k3u1fbpfcp-watermark.awebp" alt="image.png"></p>
+            <h5 id="1-定位"><a href="#1-定位" class="headerlink" title="1.定位"></a>1.定位</h5><p>position有四个值，absolute/relative/fixed/static（绝对/相对/固定/静态），使用top,left,right,bottom来调整元素位置。</p>
+<p>static。遵循基本的定位规则，不能通过z-index进行层次分级，在普通流中，各个元素默认的属性。</p>
+<p>relative。对象不可层叠，不脱离文档流。参考自身静态位置通过TLBR定位。</p>
+<p>absolute。脱离文档流，通过TLBR定位。选取其最近一个具有定位设置的父级对象进行绝对定位，若父级没有，则以body坐标原点进行定位。</p>
+<p>flxed。固定参照对象是可视化窗口不是body。使用了该元素不会随着窗口的滚动而滚动，属于absolute的子集。</p>
+<h5 id="2-具体作用"><a href="#2-具体作用" class="headerlink" title="2.具体作用"></a>2.具体作用</h5><p>static。通常不用。</p>
+<p>relative。不脱离文本流。不设置TLBR，位置不会变。且不影响当前布局。设置之后，会向指定方向偏移，但原有的位置还是占据着的。</p>
+<p>absolute。完全脱离文本流。原有位置不再占据。元素设置absolute后，父级元素没有设置position，ab/rela/fixed会以body为父级。</p>
+<p>fixed。不随页面滚动而滚动。</p>
 
         </div>
 
@@ -224,7 +230,7 @@
                 
                     <p class="copyright-item">
                         <span>Permalink:</span>
-                        <span><a href="https://chang-an.xyz/2022/02/25/%E5%8E%9F%E5%9E%8B%E9%93%BE%E5%8F%8A%E7%BB%A7%E6%89%BF/">https://chang-an.xyz/2022/02/25/%E5%8E%9F%E5%9E%8B%E9%93%BE%E5%8F%8A%E7%BB%A7%E6%89%BF/</a></span>
+                        <span><a href="https://chang-an.xyz/2022/03/08/css-position/">https://chang-an.xyz/2022/03/08/css-position/</a></span>
                     </p>
                 
                 
@@ -243,7 +249,7 @@
                 <span class="tag">
                     
                     
-                        <a href="/tag/JS%E5%9F%BA%E7%A1%80/"># JS基础</a>
+                        <a href="/tag/CSS%E5%9F%BA%E7%A1%80/"># CSS基础</a>
                     
                         
                 </span>
@@ -256,10 +262,10 @@
         </section>
         <section class="post-nav">
             
-                <a class="prev" rel="prev" href="/2022/03/08/css-position/">css-position</a>
+                <a class="prev" rel="prev" href="/2022/03/10/es6%E6%96%B0%E7%89%B9%E6%80%A7/">es6新特性</a>
             
             
-            <a class="next" rel="next" href="/2021/12/27/%E5%85%B3%E4%BA%8E%E6%97%B6%E5%BA%8F%E9%A2%84%E6%B5%8B/">关于时序预测</a>
+            <a class="next" rel="next" href="/2022/02/25/%E5%8E%9F%E5%9E%8B%E9%93%BE%E5%8F%8A%E7%BB%A7%E6%89%BF/">原型链及继承</a>
             
         </section>
 
