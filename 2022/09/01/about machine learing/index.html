@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="常安">
+
+
+
+
+
+<title>about machine learing | 常安</title>
+
+
+
+    <link rel="icon" href="/tree.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">不如回头看看</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/category">分类</a>
+                
+                    <a class="menu-item" href="/tag">标签</a>
+                
+                    <a class="menu-item" href="/about">关于我</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">不如回头看看</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/category">分类</a>
+                
+                    <a class="menu-item" href="/tag">标签</a>
+                
+                    <a class="menu-item" href="/about">关于我</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+        <div class="post-toc">
+    <div class="tocbot-list">
+    </div>
+    <div class="tocbot-list-menu">
+        <a class="tocbot-toc-expand" onclick="expand_toc()">Expand all</a>
+        <a onclick="go_top()">Back to top</a>
+        <a onclick="go_bottom()">Go to bottom</a>
+    </div>
+</div>
+
+<script>
+    document.ready(
+        function () {
+            tocbot.init({
+                tocSelector: '.tocbot-list',
+                contentSelector: '.post-content',
+                headingSelector: 'h1, h2, h3, h4, h5',
+                collapseDepth: 1,
+                orderedList: false,
+                scrollSmooth: true,
+            })
+        }
+    )
+
+    function expand_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 6,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "collapse_toc()");
+        b.innerHTML = "Collapse all"
+    }
+
+    function collapse_toc() {
+        var b = document.querySelector(".tocbot-toc-expand");
+        tocbot.init({
+            tocSelector: '.tocbot-list',
+            contentSelector: '.post-content',
+            headingSelector: 'h1, h2, h3, h4, h5',
+            collapseDepth: 1,
+            orderedList: false,
+            scrollSmooth: true,
+        });
+        b.setAttribute("onclick", "expand_toc()");
+        b.innerHTML = "Expand all"
+    }
+
+    function go_top() {
+        window.scrollTo(0, 0);
+    }
+
+    function go_bottom() {
+        window.scrollTo(0, document.body.scrollHeight);
+    }
+
+</script>
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">about machine learing</h1>
+            
+                <div class="post-meta">
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">九月 1, 2022&nbsp;&nbsp;9:29:13</a>
+                        </span>
+                    
+                    
+                        <span class="post-category">
+                    Category:
+                            
+                                <a href="/categorie/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+                            
+                        </span>
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="1-模型的过拟合和欠拟合"><a href="#1-模型的过拟合和欠拟合" class="headerlink" title="1.模型的过拟合和欠拟合"></a>1.模型的过拟合和欠拟合</h2><p>训练误差（training error）和泛化误差（generalization error）。通俗来讲，前者指模型在训练数据集上表现出的误差，后者指模型在任意一个测试数据样本上表现出的误差的期望，并常常通过测试数据集上的误差来近似。</p>
+<p>在机器学习里，我们通常假设训练数据集（训练题）和测试数据集（测试题）里的每一个样本都是从同一个概率分布中相互独立地生成的。基于该独立同分布假设，给定任意一个机器学习模型（含参数），它的训练误差的期望和泛化误差都是一样的。</p>
+<p>一类是模型无法得到较低的训练误差，我们将这一现象称作欠拟合（underfitting）；另一类是模型的训练误差远小于它在测试数据集上的误差，我们称该现象为过拟合（overfitting）。</p>
+<h3 id="1-1欠拟合"><a href="#1-1欠拟合" class="headerlink" title="1.1欠拟合"></a>1.1欠拟合</h3><p>1）添加其它特征。组合，相关性，上下文特征，平台特征。</p>
+<p>2）添加多项式特征，如线性模型中二次项和三次项。</p>
+<h3 id="1-2过拟合"><a href="#1-2过拟合" class="headerlink" title="1.2过拟合"></a>1.2过拟合</h3><p>1）重新清洗数据。</p>
+<p>2）增大训练数据量。</p>
+<p>3）减少特征维度。</p>
+<p>4）正则化。减少某个特征的影响。</p>
+<p>L2正则化。可以使其中一些w变得很小，接近0，削弱某个特征的影响。Ridge回归。MSE(x)+α正则项（平方和），等价于权重衰减。</p>
+<p>L1正则化。是其中一些w直接变为0，删除这个特征的影响。LASSO回归。正则项为权值向量的1范数，绝对值和。</p>
+<p>弹性网络，混合L2和L1.</p>
+<p>5）Dropout。随机以概率p激活一部分神经元，丢弃一部分神经元。集成学习，bagging。</p>
+<p>6）Early Stopping。验证错误达到最小时停止训练。</p>
+<h2 id="2-GBDT"><a href="#2-GBDT" class="headerlink" title="2.GBDT"></a>2.GBDT</h2><p>G-gradient，B-Boosting，DT-decision tree</p>
+<h3 id="2-1gradient"><a href="#2-1gradient" class="headerlink" title="2.1gradient"></a>2.1gradient</h3><p>除了第一轮模型拟合的目标值是真实值， 其余轮次拟合的都是负梯度，可以理解为就是残差=真值-预测值（损失函数为mse时相同）。</p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/348776985">详细公式</a></p>
+<p>本质上拟合的不是真实值的残差，而是使损失函数最小化，与bp同。因此其学习得到的模型低偏差，高方差。</p>
+<h3 id="2-2boosting"><a href="#2-2boosting" class="headerlink" title="2.2boosting"></a>2.2boosting</h3><p>Boosting本质上属于加法模型，前向分步算法。</p>
+<p>f(x)=∑Mm=1βmb(x;γm)</p>
+<p>b(x;γm)为基本分类器，γm为基本分类器的参数，βm为基本分类器的权重</p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/catstudy/articles/14695894.html">前向分步算法</a></p>
+<h3 id="2-3decision-tree"><a href="#2-3decision-tree" class="headerlink" title="2.3decision tree"></a>2.3decision tree</h3><p>基模型为CART回归决策树。分裂标准为均方误差。</p>
+<p><a href="%5B%E5%86%B3%E7%AD%96%E6%A0%91(2">CART决策树</a>——CART算法 - 知乎 (zhihu.com)](<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/418306627">https://zhuanlan.zhihu.com/p/418306627</a>))</p>
+<h2 id="3-Adam"><a href="#3-Adam" class="headerlink" title="3.Adam"></a>3.Adam</h2><p>ADaGrad-对频繁变化的参数小步长更新，稀疏的参数大步长更新。增加了分母，梯度平方累计和的平方根。</p>
+<p>RMSProp-结合梯度平方的指数移动平均数来调节学习率的变化。</p>
+<p>Adam-对梯度的一阶矩估计（梯度平均值）和二阶矩估计（梯度未中心化的方差）综合考虑，计算出更新步长。</p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/aebcaf8af76e">Adam优化器</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Adam</span>:</span></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">__init__</span>(<span class="params">self, loss, weights, lr=<span class="number">0.001</span>, beta1=<span class="number">0.9</span>, beta2=<span class="number">0.999</span>, epislon=<span class="number">1e-8</span></span>):</span></span><br><span class="line">		self.loss = loss</span><br><span class="line">		self.theta = weights</span><br><span class="line">		self.lr = lr</span><br><span class="line">		self.beta1 = beta1</span><br><span class="line">		self.beta2 = beta2</span><br><span class="line">		self.epislon = epislon</span><br><span class="line">		self.get_gradient = grad(loss)</span><br><span class="line">		self.m = <span class="number">0</span></span><br><span class="line">		self.v = <span class="number">0</span></span><br><span class="line">		self.t = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">minimize_raw</span>(<span class="params">self</span>):</span></span><br><span class="line">		self.t += <span class="number">1</span></span><br><span class="line">		g = self.get_gradient(self.theta)</span><br><span class="line">		self.m = self.beta1 * self.m + (<span class="number">1</span> - self.beta1) * g</span><br><span class="line">		self.v = self.beta2 * self.v + (<span class="number">1</span> - self.beta2) * (g * g)</span><br><span class="line">		self.m_cat = self.m / (<span class="number">1</span> - self.beta1 ** self.t)</span><br><span class="line">		self.v_cat = self.v / (<span class="number">1</span> - self.beta2 ** self.t)</span><br><span class="line">		self.theta -= self.lr * self.m_cat / (self.v_cat ** <span class="number">0.5</span> + self.epislon)</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">def</span> <span class="title">minimize</span>(<span class="params">self</span>):</span></span><br><span class="line">		self.t += <span class="number">1</span></span><br><span class="line">		g = self.get_gradient(self.theta)</span><br><span class="line">		lr = self.lr * (<span class="number">1</span> - self.beta2 ** self.t) ** <span class="number">0.5</span> / (<span class="number">1</span> - self.beta1 ** self.t)</span><br><span class="line">		self.m = self.beta1 * self.m + (<span class="number">1</span> - self.beta1) * g</span><br><span class="line">		self.v = self.beta2 * self.v + (<span class="number">1</span> - self.beta2) * (g * g)</span><br><span class="line">		self.theta -= lr * self.m / (self.v ** <span class="number">0.5</span> + self.epislon)</span><br></pre></td></tr></table></figure>
+
+<p>可以看出，对更新的步长计算，能够从梯度均值及梯度平方两个角度进行自适应地调节，而不是直接由当前梯度决定。</p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/758cd620609f">常见优化算法</a></p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                    <p class="copyright-item">
+                        <span>Permalink:</span>
+                        <span><a href="https://chang-an.xyz/2022/09/01/about%20machine%20learing/">https://chang-an.xyz/2022/09/01/about%20machine%20learing/</a></span>
+                    </p>
+                
+                
+                
+                     <p class="copyright-item">
+                         <span>Slogan:</span>
+                         <span>珍惜眼前始为真</span>
+                     </p>
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                    
+                        <a href="/tag/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"># 基础知识</a>
+                    
+                        
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+            
+            <a class="next" rel="next" href="/2022/08/27/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/">计算机网络</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <!-- <span>© 常安 </span> -->
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
